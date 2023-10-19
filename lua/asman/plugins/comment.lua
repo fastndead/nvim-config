@@ -1,7 +1,7 @@
 require('Comment').setup({
   ---Add a space b/w comment and the line
   ---@type boolean
-  padding = true,
+
 
   ---Lines to be ignored while comment/uncomment.
   ---Could be a regex string or a function that returns a regex string.

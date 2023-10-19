@@ -65,9 +65,6 @@ keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string u
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 
--- eslint fix
-keymap.set("n", "<leader>f", ":EslintFixAll<CR>")
-
 function GrepInDirectoryUnderCursor()
 	local nvimTreeApi = require("nvim-tree.api")
 	local currentNodeUnderCursor = nvimTreeApi.tree.get_node_under_cursor()

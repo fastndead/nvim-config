@@ -1,5 +1,6 @@
 -- Utilities for creating configurations
 local util = require("formatter.util")
+local keymap = vim.keymap -- for conciseness
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
@@ -14,17 +15,14 @@ require("formatter").setup({
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
-		typescript = {
-			require("formatter.filetypes.typescript"),
-		},
-		typescriptreact = {
-			require("formatter.filetypes.typescriptreact"),
-		},
-		javascript = {
-			require("formatter.filetypes.javascript"),
-		},
-		javascriptreact = {
-			require("formatter.filetypes.javascriptreact"),
+		css = {
+			function()
+				return {
+					exe = "stylelint",
+					try_node_modules = true,
+          args = {"--fix", "customSyntax"},
+				}
+			end,
 		},
 
 		-- Use the special "*" filetype for defining formatter configurations on
@@ -36,3 +34,6 @@ require("formatter").setup({
 		},
 	},
 })
+
+keymap.set("n", "<leader>f", ":Format<CR>")
+keymap.set("n", "<leader>F", ":FormatWrite<CR>")

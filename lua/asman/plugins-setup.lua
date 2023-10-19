@@ -13,7 +13,7 @@ local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
 -- autocommand that reloads neovim and installs/updates/removes plugins
 -- when file is saved
-vim.cmd([[ 
+vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
@@ -55,7 +55,6 @@ return packer.startup(function(use)
 	-- vs-code like icons
 	use("nvim-tree/nvim-web-devicons")
 
-
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
@@ -90,47 +89,43 @@ return packer.startup(function(use)
 		end,
 	})
 
-	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
-
 	-- Powerful git integration
 	use("tpope/vim-fugitive")
 
-  -- pretty status line 
+	-- pretty status line
 	use({
 		"glepnir/galaxyline.nvim",
 		config = function()
 			require("asman.plugins.galaxyline")
-		end
-  })
+		end,
+	})
 
-  -- cool ui features
-  use{
+	-- cool ui features
+	use({
 		"stevearc/dressing.nvim",
 		dependencies = "MunifTanjim/nui.nvim",
-	config = function()
+		config = function()
 			require("asman.plugins.dressing")
 		end,
-	}
+	})
 
-  use{
+	use({
 		"NvChad/nvim-colorizer.lua",
 		config = function()
 			require("asman.plugins.colorizer")
 		end,
-	}
+	})
 
-  use{
+	use({
 		"romgrk/barbar.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "BufAdd",
 		config = function()
 			require("asman.plugins.barbar")
 		end,
-  }
-  
-  use{
+	})
+
+	use({
 		"rcarriga/nvim-notify",
 		config = function()
 			require("notify").setup({
@@ -148,18 +143,28 @@ return packer.startup(function(use)
 				require("notify")(msg, ...)
 			end
 		end,
-  }
+	})
 
-  use{
-		"airblade/vim-rooter",
-  }
+	use({
+		"jackMort/ChatGPT.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
 
-  use("David-Kunz/jester")
+	use("David-Kunz/jester")
 
-  use { 'mhartington/formatter.nvim' }
+	use({ "mhartington/formatter.nvim" })
 
+	use("mfussenegger/nvim-lint")
+
+	use("mfussenegger/nvim-dap")
 	-- Startup screen
 	use("mhinz/vim-startify")
+
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 	if packer_bootstrap then
 		require("packer").sync()
