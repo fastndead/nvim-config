@@ -55,7 +55,7 @@ keymap.set("n", "<leader>g", ":Git<CR>") -- toggle split window maximization
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- nvim-tree
-keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>") -- toggle file explorer
+keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>") -- toggle file explorer
 keymap.set("n", "<leader>e", ":NvimTreeFindFile<CR>") -- find file in explorer
 
 -- telescope

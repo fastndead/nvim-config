@@ -156,15 +156,20 @@ return packer.startup(function(use)
 
 	use("David-Kunz/jester")
 
-	use({ "mhartington/formatter.nvim" })
-
-	use("mfussenegger/nvim-lint")
-
 	use("mfussenegger/nvim-dap")
 	-- Startup screen
 	use("mhinz/vim-startify")
 
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	})
+
+	use({ "stevearc/conform.nvim" })
 
 	if packer_bootstrap then
 		require("packer").sync()
